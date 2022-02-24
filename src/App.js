@@ -78,17 +78,23 @@ export default function App() {
             users.items.map((user, index) => {
               return (
                 <Col>
-                  <Card className="shadow" key={index}>
+                  <Card className="shadow rounded-0" key={index}>
                     <Card.Body>
                       <Row>
                         <Col xs={3}>
-                          <img
-                            src={user.avatar_url}
-                            className="img-fluid rounded-circle w-100"
-                          />
+                          <a href={user.url} target="_blank">
+                            <img
+                              src={user.avatar_url}
+                              className="img-fluid rounded-circle w-100"
+                            />
+                          </a>
                         </Col>
                         <Col>
-                          <h5 className="card-title">{user.login}</h5>
+                          <h5 className="card-title">
+                            <a href={user.url} target="_blank">
+                              {user.login}
+                            </a>
+                          </h5>
                           <p className="card-text">
                             With supporting text below as a natural lead-in to
                             additional content.

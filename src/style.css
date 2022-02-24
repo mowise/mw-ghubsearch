@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 body {
   background: #f5f7fb;
-}
-h1,
-p {
   font-family: Lato;
+}
+h1 {
+  font-family: 'Montserrat', sans-serif;
+}
+.text-primary {
+  color: #29f0b4 !important;
 }
 .searchallusers input {
   height: 60px;
