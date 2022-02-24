@@ -1,0 +1,25 @@
+body {
+  background: #f5f7fb;
+}
+h1,
+p {
+  font-family: Lato;
+}
+.searchallusers input {
+  height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-clip: padding-box;
+  border-color: #29f0b4;
+  font-weight: 700;
+  border-width: 3px;
+  border-radius: 0;
+}
+.searchallusers .btn {
+  background: #29f0b4;
+  border-color: #29f0b4;
+  font-weight: 700;
+  border-width: 3px;
+  border-radius: 0;
+  color: #000000;
+}
