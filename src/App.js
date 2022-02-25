@@ -131,8 +131,8 @@ export default function App() {
                             </a>
                           </h5>
                           <p className="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit.
                           </p>
                         </Col>
                       </Row>
