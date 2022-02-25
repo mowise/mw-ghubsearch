@@ -9,6 +9,18 @@ h1 {
 .text-primary {
   color: #29f0b4 !important;
 }
+.headerbg {
+  background: url(https://stackblitz.com/files/react-z9bwih/github/mowise/mw-ghubsearch/master/src/githubsearc-bg.jpg);
+  background-size: cover;
+}
+.card {
+  border: 2px solid #b428f0;
+}
+.card-title a {
+  text-decoration: none;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+}
 .searchallusers input {
   height: 60px;
   padding-left: 20px;

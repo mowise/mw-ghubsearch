@@ -8,18 +8,29 @@ import './style.css';
 
 export default function App() {
   const [users, setUsers] = useState(null);
+  const [total, setTotal] = useState('0');
   const [query, setQuery] = useState('example');
+  const [perpage, setPerPage] = useState('12');
+  const [page, setPage] = useState('1');
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://api.github.com/search/users?q=${query}&per_page=12`
+      `https://api.github.com/search/users?q=${query}&per_page=${perpage}&page=${page}`
     );
     setUsers(response.data);
+    setTotal(response.data.total_count);
+    console.log(response.data.total_count);
+    console.log(response.data);
+  };
+
+  const noResults = () => {
+    return;
+    <>No Results</>;
   };
 
   return (
     <>
-      <div className="position-relative overflow-hidden p-3 p-md-5 bg-dark">
+      <div className="position-relative overflow-hidden p-3 p-md-5 bg-dark headerbg">
         <div className="col-7 p-lg-5 my-5">
           <h1 className="display-4 text-white fw-bold">
             <span className="text-primary">Search</span> more than{' '}
@@ -49,7 +60,7 @@ export default function App() {
       <Container className="py-5">
         <Row>
           <Col>
-            <h6>Showing 1,124,848 available user results</h6>
+            <h6>{total} User Results</h6>
           </Col>
           <Col>
             <nav>
@@ -73,7 +84,7 @@ export default function App() {
             </nav>
           </Col>
         </Row>
-        <Row className="row-cols-4 g-4">
+        <Row className="row-cols-4 g-4 mb-3">
           {users &&
             users.items.map((user, index) => {
               return (
@@ -91,7 +102,11 @@ export default function App() {
                         </Col>
                         <Col>
                           <h5 className="card-title">
-                            <a href={user.url} target="_blank">
+                            <a
+                              href={user.url}
+                              target="_blank"
+                              className="fw-bold"
+                            >
                               {user.login}
                             </a>
                           </h5>
@@ -106,6 +121,29 @@ export default function App() {
                 </Col>
               );
             })}
+        </Row>
+        {!users && (
+          <Row className="mb-3">
+            <Col>
+              <Card className="shadow rounded-0">
+                <Card.Body>Currently No Results</Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        )}
+        <Row>
+          <Col></Col>
+          <Col xs={3} sm={2} md={1} className="align-self-end">
+            <select
+              onChange={(event) => setPerPage(event.target.value)}
+              class="form-select form-select-sm"
+            >
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="48">48</option>
+              <option value="96">96</option>
+            </select>
+          </Col>
         </Row>
       </Container>
     </>
