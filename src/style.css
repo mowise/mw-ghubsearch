@@ -13,6 +13,33 @@ h1 {
   background: url(https://stackblitz.com/files/react-z9bwih/github/mowise/mw-ghubsearch/master/src/githubsearc-bg.jpg);
   background-size: cover;
 }
+.next-link a,
+.prev-link a {
+  border: 2px solid #29f0b4;
+  border-radius: 0 !important;
+  background: #29f0b4;
+  color: #000000;
+  cursor: pointer;
+}
+.next-link a:hover,
+.prev-link a:hover {
+  border-radius: 0;
+  background: #b428f0;
+  border: 2px solid #b428f0;
+  color: #ffffff;
+  cursor: pointer;
+}
+.current-page {
+  border: 2px solid #b428f0;
+  border-radius: 0 !important;
+  background: #b428f0;
+  color: #ffffff;
+}
+.current-page:hover {
+  border: 2px solid #b428f0;
+  background: #ffffff;
+  color: #000000;
+}
 .card {
   border: 2px solid #b428f0;
 }

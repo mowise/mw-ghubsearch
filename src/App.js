@@ -11,7 +11,7 @@ export default function App() {
   const [total, setTotal] = useState('0');
   const [query, setQuery] = useState('example');
   const [perpage, setPerPage] = useState('12');
-  const [page, setPage] = useState('1');
+  const [page, setPage] = useState(1);
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -21,11 +21,6 @@ export default function App() {
     setTotal(response.data.total_count);
     console.log(response.data.total_count);
     console.log(response.data);
-  };
-
-  const noResults = () => {
-    return;
-    <>No Results</>;
   };
 
   return (
@@ -58,30 +53,55 @@ export default function App() {
         </div>
       </div>
       <Container className="py-5">
-        <Row>
+        <Row className="mb-3">
           <Col>
-            <h6>{total} User Results</h6>
-          </Col>
-          <Col>
-            <nav>
-              <ul class="pagination pagination-sm justify-content-end">
-                <li class="page-item disabled">
-                  <a
-                    class="page-link"
-                    href="#"
-                    tabindex="-1"
-                    aria-disabled="true"
+            <h6 className="d-inline-block">{total} User Results</h6>
+            {users && (
+              <nav className="d-inline-block float-end">
+                <ul class="pagination pagination-sm justify-content-end mb-0">
+                  <li
+                    class={
+                      page === 1
+                        ? 'page-item prev-link disabled'
+                        : 'page-item prev-link'
+                    }
                   >
-                    Previous
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    Next
-                  </a>
-                </li>
-              </ul>
-            </nav>
+                    <a
+                      class="page-link"
+                      onClick={() => {
+                        setPage(page - 1);
+                        fetchData();
+                      }}
+                    >
+                      Previous
+                    </a>
+                  </li>
+                  <li class="page-item page-link current-page">{page}</li>
+                  <li class="page-item next-link">
+                    <a
+                      class="page-link"
+                      onClick={() => {
+                        setPage(page + 1);
+                        fetchData();
+                      }}
+                    >
+                      Next
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            )}
+          </Col>
+          <Col xs={3} sm={2} md={1} className="align-self-end">
+            <select
+              onChange={(event) => setPerPage(event.target.value)}
+              class="form-select form-select-sm"
+            >
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="48">48</option>
+              <option value="96">96</option>
+            </select>
           </Col>
         </Row>
         <Row className="row-cols-4 g-4 mb-3">
@@ -133,17 +153,6 @@ export default function App() {
         )}
         <Row>
           <Col></Col>
-          <Col xs={3} sm={2} md={1} className="align-self-end">
-            <select
-              onChange={(event) => setPerPage(event.target.value)}
-              class="form-select form-select-sm"
-            >
-              <option value="12">12</option>
-              <option value="24">24</option>
-              <option value="48">48</option>
-              <option value="96">96</option>
-            </select>
-          </Col>
         </Row>
       </Container>
     </>
